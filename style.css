@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); /* Default romantis */
+    color: #333;
+    overflow-x: hidden;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Tema Pantai (untuk galeri1.html) */
+body.pantai-theme {
+    background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 50%, #b8e994 100%); /* Hijau-biru pantai */
+}
+
+/* Tema Kota (untuk galeri2.html) */
+body.kota-theme {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); /* Ungu-biru urban kota */
+}
+
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 105, 180, 0.8);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#musicToggle, .back-btn {
+    background: rgba(255,255,255,0.3);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+#musicToggle:hover, .back-btn:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+/* Galeri */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 2 kolom desktop */
+    gap: 20px;
+    padding: 30px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 105, 180, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.heart {
+    font-size: 3em;
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.caption {
+    color: white;
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 10px;
+    font-weight: 300;
+    max-width: 80%;
+}
+
+/* Modal Lightbox (untuk sub-galeri) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.modal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#modalImg {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    transition: opacity 0.3s;
+}
+
+#modalImg.loading {
+    opacity: 0.5;
+}
+
+.modal-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 105, 180, 0.8);
+    border: none;
+    color: white;
+    font-size: 2em;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 50px;
+    height: 50px;
+}
+
+.modal-nav button:hover {
+    background: rgba(255, 105, 180, 1);
+}
+
+#prev { left: -70px; }
+#next { right: -70px; }
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close:hover {
+    color: #ff69b4;
+}
+
+.modal-caption {
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Thumbnail Navigation */
+.thumbnails-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    max-width: 800px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.thumbnails-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.thumbnails-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 105, 180, 0.5);
+    border-radius: 4px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+    opacity: 0.7;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.5);
+    border-color: #ff69b4;
+    opacity: 1;
+}
+
+/* Partikel Hati */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    font-size: 2em;
+    animation: float 6s infinite linear;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 50%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 80%; animation-delay: 4s; }
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+    header h1 { font-size: 2em; }
+    .gallery { 
+        grid-template-columns: 1fr; /* 1 kolom mobile */
+        gap: 15px; 
+        padding: 20px 10px; 
+    }
+    .gallery-item img { height: 250px; }
+    .thumbnails-container {
+        gap: 8px;
+        padding: 5px;
+        justify-content: flex-start;
+    }
+    .thumbnail {
+        width: 60px;
+        height: 45px;
+    }
+    .modal-nav button { 
+        font-size: 1.5em; 
+        width: 40px; 
+        height: 40px; 
+    }
+    #prev { left: -20px; }
+    #next { right: -20px; }
+    .close { 
+        font-size: 2em; 
+        right: 10px; 
+        top: 10px; 
+    }
+}
