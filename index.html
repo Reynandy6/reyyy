@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kenangan Kita 💕</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Galeri Kenangan Kita 💕</h1>
+        <p>Pilih momen favorit untuk melihat koleksi lengkap!</p>
+        <!-- Audio latar (opsional) -->
+        <audio id="bgMusic" loop>
+            <source src="audio/background.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung audio.
+        </audio>
+        <button id="musicToggle" onclick="toggleMusic()">▶️ Mainkan Musik</button>
+    </header>
+    
+    <main class="gallery">
+        <!-- Foto 1: Pindah ke galeri pantai -->
+        <div class="gallery-item" onclick="goToPantaiGallery()">
+            <img src="images/foto1.jpg" alt="Liburan pantai">
+            <div class="overlay">
+                <span class="heart">💖</span>
+                <div class="caption">Liburan pertama kita di pantai 🌅 (Klik untuk galeri lengkap)</div>
+            </div>
+        </div>
+        
+        <!-- Foto 2: Pindah ke galeri jalan-jalan kota -->
+        <div class="gallery-item" onclick="goToKotaGallery()">
+            <img src="images/foto3.jpg" alt="Jalan-jalan kota">
+            <div class="overlay">
+                <span class="heart">💖</span>
+                <div class="caption">Foto candid saat jalan-jalan kota 🏙️ (Klik untuk galeri lengkap)</div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Partikel hati -->
+    <div class="particles">
+        <div class="particle">💕</div>
+        <div class="particle">💖</div>
+        <div class="particle">💗</div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
